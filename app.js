@@ -31,35 +31,95 @@ function updateGraph(data) {
     }
 
     window.lineChart = new Chart(ctx, {
-        type: 'line',
+        type: 'line',  // Base type is line, but we'll mix types
         data: {
             labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'],
             datasets: [
-                { label: `Temperature at ${data.name} (°C)`, data: data.data.Temperature, borderColor: 'rgba(255, 99, 132, 1)', fill: false },
-                { label: `Humidity at ${data.name} (%)`, data: data.data.Humidity, borderColor: 'rgba(54, 162, 235, 1)', fill: false },
-                { label: `Wind Speed at ${data.name} (km/h)`, data: data.data.WindSpeed, borderColor: 'rgba(75, 192, 192, 1)', fill: false },
-                { label: `Pressure at ${data.name} (hPa)`, data: data.data.Pressure, borderColor: 'rgba(153, 102, 255, 1)', fill: false }
+                {
+                    label: `Temperature at ${data.name} (°C)`,
+                    data: data.data.Temperature,
+                    borderColor: 'red',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    type: 'line',
+                    yAxisID: 'yTemp'
+                },
+                {
+                    label: `Humidity at ${data.name} (%)`,
+                    data: data.data.Humidity,
+                    borderColor: 'blue',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    type: 'line',
+                    yAxisID: 'yHum'
+                },
+                {
+                    label: `Wind Speed at ${data.name} (km/h)`,
+                    data: data.data.WindSpeed,
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    type: 'line',
+                    yAxisID: 'yWind'
+                },
+                {
+                    label: `Pressure at ${data.name} (hPa)`,
+                    data: data.data.Pressure,
+                    backgroundColor: 'rgba(153, 102, 255, 0.5)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    type: 'line',
+                    yAxisID: 'yPressure'
+                }
             ]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            layout: {
-                padding: {
-                    left: 10,
-                    right: 10,
-                    top: 10,
-                    bottom: 30  // Adjust bottom padding to ensure labels fit
-                }
-            },
             scales: {
-                y: {
-                    beginAtZero: false
+                yHum: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Humidity (%)'
+                    }
+                },
+                yTemp: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Temperature (°C)'
+                    }
+                },
+                yWind: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false, // only draw grid lines for this axis
+                    },
+                    title: {
+                        display: true,
+                        text: 'Wind Speed (km/h)'
+                    }
+                },
+                yPressure: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Pressure (hPa)'
+                    }
                 }
             }
         }
     });
 }
+
 
 
 // Initial chart setup
@@ -69,6 +129,6 @@ updateGraph({
         Temperature: [0, 0, 0, 0, 0],
         Humidity: [0, 0, 0, 0, 0],
         WindSpeed: [0, 0, 0, 0, 0],
-        Pressure: [1013, 1013, 1013, 1013, 1013]
+        Pressure: [1020, 1020, 1020, 1020, 1020]
     }
 });
