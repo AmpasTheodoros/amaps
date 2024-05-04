@@ -1,0 +1,36 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh; /* Use 100% of the viewport height */
+}
+
+#map, #myChart {
+    flex: 1 1 auto;
+    width: 90%; /* Adjust width as per requirement */
+    max-width: 600px; /* Ensuring it doesn't get too wide on larger screens */
+}
+
+#map {
+    height: 50vh; /* Half of the viewport height */
+    margin-bottom: 20px; /* Space between map and chart */
+}
+
+canvas {
+    height: 40vh; /* Adjust height of the canvas to match map height */
+}
+
+@media (min-width: 1024px) {
+    body {
+        flex-direction: row; /* Aligns items horizontally */
+        justify-content: space-around; /* Adds space around items */
+    }
+
+    #map, #myChart {
+        width: 45%; /* Each takes roughly half the width */
+        height: 80vh; /* Taller elements to take advantage of wider screens */
+    }
+}
