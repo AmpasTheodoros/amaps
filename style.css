@@ -1,36 +1,32 @@
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+html, body {
+    height: 100%;
     margin: 0;
-    font-family: Arial, sans-serif;
-    height: 100vh; /* Use 100% of the viewport height */
-}
-
-#map, #myChart {
-    flex: 1 1 auto;
-    width: 90%; /* Adjust width as per requirement */
-    max-width: 600px; /* Ensuring it doesn't get too wide on larger screens */
+    padding: 0;
+    overflow: hidden;
 }
 
 #map {
-    height: 50vh; /* Half of the viewport height */
-    margin-bottom: 20px; /* Space between map and chart */
+    height: 45vh;  /* Reduced height slightly to give more space to the chart */
+    width: 100vw;
 }
 
-canvas {
-    height: 40vh; /* Adjust height of the canvas to match map height */
+#myChart {
+    height: 55vh;  /* Increased height to provide more space for axes and labels */
+    width: 100vw;
 }
 
-@media (min-width: 1024px) {
-    body {
-        flex-direction: row; /* Aligns items horizontally */
-        justify-content: space-around; /* Adds space around items */
-    }
+#top,
+#bottom {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 50%;
+}
 
-    #map, #myChart {
-        width: 45%; /* Each takes roughly half the width */
-        height: 80vh; /* Taller elements to take advantage of wider screens */
-    }
+#top {
+    top: 0;
+}
+
+#bottom {
+    bottom: 0;
 }
